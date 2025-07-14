@@ -1,0 +1,87 @@
+#####################################################
+#                    BIBLIOTEKOS                    #  
+#####################################################
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(corrplot)
+library(car)
+library(quantreg)
+
+data("diamonds")  # Iš ggplot2 paketo
+
+#####################################################
+#         Tikrinam ar yra nulinių reikšmių          #  
+#####################################################
+
+colSums(diamonds == 0)
+
+#####################################################
+#         Sklaidos ir stačiakampės diagramos        #  
+#####################################################
+
+ggplot(diamonds, aes(x = carat, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
+ggplot(diamonds, aes(x = depth, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
+ggplot(diamonds, aes(x = table, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
+ggplot(diamonds, aes(x = x, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
+ggplot(diamonds, aes(x = y, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
+ggplot(diamonds, aes(x = z, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
+
+ggplot(diamonds, aes(x = cut, y = price)) + geom_boxplot() + theme_minimal()
+ggplot(diamonds, aes(x = color, y = price)) + geom_boxplot() + theme_minimal()
+ggplot(diamonds, aes(x = clarity, y = price)) + geom_boxplot() + theme_minimal()
+
+#####################################################
+#              Multikolinearumo patikra             #  
+#####################################################
+
+numeric_vars <- diamonds %>%
+  select_if(is.numeric)
+
+cor_matrix <- cor(numeric_vars)
+corrplot(cor_matrix, method = "color", addCoef.col = "black")
+
+lm_model <- lm(price ~ carat + depth + table + color + cut + clarity, data = diamonds)
+vif(lm_model)
+
+#####################################################
+#   Duomenų dalyba į mokymo ir testavimo aibes      #  
+#####################################################
+
+set.seed(123)
+n <- nrow(diamonds)
+test_idx <- sample(1:n, size = round(0.1 * n), replace = FALSE)
+
+train_data <- diamonds[-test_idx, ]
+test_data <- diamonds[test_idx, ]
+
+#####################################################
+#                 Kvantilių regresija               #  
+#####################################################
+
+taus <- seq(0.1, 0.9, by = 0.1)
+mse_values <- numeric(length(taus))
+
+for (i in seq_along(taus)) {
+  tau <- taus[i]
+  model <- rq(price ~ carat + depth + table + color + cut + clarity, tau = tau, data = train_data)
+  preds <- predict(model, newdata = test_data)
+  mse_values[i] <- mean((test_data$price - preds)^2)
+}
+
+barplot(mse_values, names.arg = taus, main = "MSE vs Tau", xlab = "Tau", ylab = "MSE")
+
+#####################################################
+#        Empirinių  tikimybių palyginimas           #  
+#####################################################
+
+#####################################################
+#        Empirinių  tikimybių skirtumas             #  
+#####################################################
+
+#####################################################
+#   Kvantilių nuostolių funkcijos skaičiavimas      #  
+#####################################################
+
+
