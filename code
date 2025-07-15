@@ -100,7 +100,7 @@ for (i in seq_along(taus)) {
   mse_values[i] <- mean((test_data$price - preds)^2)
 }
 
-barplot(mse_values, names.arg = taus, main = "MSE vs Tau", xlab = "Tau", ylab = "MSE")
+barplot(mse_values, names.arg = taus, main = "MSE vs Tau", xlab = "Tau", ylab = "MSE", col = "cadetblue3", border = "black")
 
 #####################################################
 #        Empirinių  tikimybių palyginimas           #  
