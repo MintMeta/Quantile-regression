@@ -76,12 +76,79 @@ barplot(mse_values, names.arg = taus, main = "MSE vs Tau", xlab = "Tau", ylab = 
 #        Empirinių  tikimybių palyginimas           #  
 #####################################################
 
+empirical_probs <- numeric(length(taus))
+
+for (i in seq_along(taus)) {
+  tau <- taus[i]
+  model <- rq(price ~ carat + depth + table + color + cut + clarity, tau = tau, data = train_data)
+  preds <- predict(model, newdata = test_data)
+  empirical_probs[i] <- mean(test_data$price <= preds)
+}
+
+plot(taus, empirical_probs, type = "b", col = "blue", pch = 19,
+     ylim = c(0,1), ylab = "Empirinė tikimybė", xlab = "Tau")
+abline(0, 1, col = "red", lty = 2)
+
 #####################################################
 #        Empirinių  tikimybių skirtumas             #  
 #####################################################
+
+plot(taus, empirical_probs - taus, type = "b", col = "purple", pch = 19,
+     ylab = "Empirinė - Teorinė", xlab = "Tau")
+abline(h = 0, col = "red", lty = 2)
 
 #####################################################
 #   Kvantilių nuostolių funkcijos skaičiavimas      #  
 #####################################################
 
+quantile_loss <- function(y, y_pred, tau) {
+  e <- y - y_pred
+  return(mean(ifelse(e >= 0, tau * e, (tau - 1) * e)))
+}
+
+loss_values <- numeric(length(taus))
+
+for (i in seq_along(taus)) {
+  tau <- taus[i]
+  model <- rq(price ~ carat + depth + table + color + cut + clarity, tau = tau, data = train_data)
+  preds <- predict(model, newdata = test_data)
+  loss_values[i] <- quantile_loss(test_data$price, preds, tau)
+}
+
+barplot(loss_values, names.arg = taus, main = "Quantile Loss vs Tau", xlab = "Tau", ylab = "Loss")
+
+
+#####################################################
+#      Kvantilių regresijos sklaidos diagramos      #  
+#####################################################
+
+
+plot_quantile_vs_ols <- function(xvar, data, xlab = NULL, title = NULL) {
+  ggplot(data, aes_string(x = xvar, y = "price")) +
+    geom_point(fill = "cadetblue3", color = "black", shape = 21, alpha = 0.3) +
+    stat_smooth(method = "lm", aes(color = "OLS"), size = 1.2, se = FALSE) +
+    geom_quantile(quantiles = 0.1, aes(color = "Quantile 0.1"), size = 1.2) +
+    geom_quantile(quantiles = 0.6, aes(color = "Quantile 0.6"), size = 1.2) +
+    geom_quantile(quantiles = 0.9, aes(color = "Quantile 0.9"), size = 1.2) +
+    scale_color_manual(name = "Model",
+                       values = c("OLS" = "orange",
+                                  "Quantile 0.1" = "red",
+                                  "Quantile 0.6" = "green",
+                                  "Quantile 0.9" = "purple")) +
+    coord_cartesian(
+      xlim = c(0, quantile(data[[xvar]], 0.99, na.rm = TRUE)),
+      ylim = c(0, quantile(data$price, 0.99, na.rm = TRUE))
+    ) +
+    labs(
+      x = ifelse(is.null(xlab), xvar, xlab),
+      y = "Price",
+      title = ifelse(is.null(title),
+                     paste("Price vs", xvar, "- OLS and Quantile regression"),
+                     title)
+    ) +
+    theme_minimal()
+}
+plot_quantile_vs_ols("carat", diamonds, "Carat", "Diamond price vs carat")
+plot_quantile_vs_ols("depth", diamonds, "Depth", "Diamond price vs depth")
+plot_quantile_vs_ols("table", diamonds, "Table", "Diamond price vs table")
 
