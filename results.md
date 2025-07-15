@@ -1,5 +1,7 @@
 # Naudoti duomenys
 
+Pasirinktas naudoti R paketo, *diamonds* duomenų rinkinys, kuris yra importuojamas iš *ggplot2* bibliotekos. Duomenų rinkinį sudaro 10 stulpelių (kintamųjų) ir 54,940 eilučių (įrašų), susijusių su deimantų išvaizdos pagrindinėmis sąvybėmis.
+
 ## Kintamieji ##
 - **price** - deimanto kaina JAV doleriais (nuo $326 iki $18,823)
 - **carat** - deimanto svoris (nuo 0,2 ct iki 5,01 ct) (1 karatas = 200 miligramų = 0,2 gramo)
@@ -9,8 +11,8 @@
 - **x** - deimanto ilgis matuojamas mm (nuo 0 iki 10,74)
 - **y** - deimanto plotis matuojamas mm (nuo 0 iki 58,9)
 - **z** - deimanto gylis matuojamas mm (nuo 0 iki 31,8)
-- **depth** - bendras deimanto gylis procentais = z / vidurkis(x, y) = 2 * z / (x + y) (43-79)
-- **table** - deimanto viršaus plotis plačiausio taško atžvilgiu (43-95)
+- **depth** - bendras deimanto gylis procentais = z / vidurkis(x, y) = 2 * z / (x + y) (nuo 43 iki 79)
+- **table** - deimanto viršaus plotis plačiausio taško atžvilgiu (nuo 43 iki 95)
 
 <ins>Vizualus kintamųjų pateikimas:</ins>
 
