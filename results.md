@@ -12,7 +12,7 @@
 - **depth** - bendras deimanto gylis procentais = z / vidurkis(x, y) = 2 * z / (x + y) (43-79)
 - **table** - deimanto viršaus plotis plačiausio taško atžvilgiu (43-95)
 
-  
+<img width="500" height="238" alt="Image" src="https://github.com/user-attachments/assets/28481860-6ab6-4857-ac7c-2f04f5caa711" />
 
 > [!NOTE]
 > Skaidrumas (clarity) klasifikuojamas taip, žiūrint per 10 kartų padidinimą.
