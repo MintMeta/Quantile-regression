@@ -12,7 +12,10 @@
 - **depth** - bendras deimanto gylis procentais = z / vidurkis(x, y) = 2 * z / (x + y) (43-79)
 - **table** - deimanto viršaus plotis plačiausio taško atžvilgiu (43-95)
 
-<img width="500" height="238" alt="Image" src="https://github.com/user-attachments/assets/28481860-6ab6-4857-ac7c-2f04f5caa711" />
+<ins>Vizualus kintamųjų pateikimas:</ins>
+
+  <img width="500" height="238" alt="Image" src="https://github.com/user-attachments/assets/28481860-6ab6-4857-ac7c-2f04f5caa711" />
+
 
 > [!NOTE]
 > Skaidrumas (clarity) klasifikuojamas taip, žiūrint per 10 kartų padidinimą.
@@ -24,3 +27,20 @@
 > - SL1 ir SL2 - (angl. slightly included) Nežymiai inkrustuotas (pastebimas)
 > - I1 ir I2 - (angl. included) Inkrustuotas (akivaizdus, gali turėti įtakos skaidrumui)
 
+<ins>Kintamojo clarity reikšmių vizualizacija:</ins>
+
+<img width="500" height="284" alt="Image" src="https://github.com/user-attachments/assets/dcd8b40b-b290-4019-bf9a-e6c7383ac385" />
+
+
+> [!NOTE]
+> Deimantų spalva (color) yra matuojama atitinkama spalvų skale:
+> >
+> - DEF - bespalvis, labai retas;
+> - GHIJ - beveik bespalvis (geltonos ir rudos atspalviai);
+> - KLM - silpnai gelsvas
+> - NOPQR - labai šviesus geltonas
+> - STUVWXYZ - šviesus geltonas
+
+<ins>Kintamojo color reikšmių vizualizacija:</ins>
+
+<img width="500" height="168" alt="Image" src="https://github.com/user-attachments/assets/dda38193-8e3d-467f-8b6a-955cb3059f86" />
