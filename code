@@ -18,19 +18,41 @@ data("diamonds")  # Iš ggplot2 paketo
 colSums(diamonds == 0)
 
 #####################################################
-#         Sklaidos ir stačiakampės diagramos        #  
+#                  Sklaidos diagramos               #  
 #####################################################
 
-ggplot(diamonds, aes(x = carat, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
-ggplot(diamonds, aes(x = depth, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
-ggplot(diamonds, aes(x = table, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
-ggplot(diamonds, aes(x = x, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
-ggplot(diamonds, aes(x = y, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
-ggplot(diamonds, aes(x = z, y = price)) + geom_point(alpha = 0.3) + theme_minimal()
 
-ggplot(diamonds, aes(x = cut, y = price)) + geom_boxplot() + theme_minimal()
-ggplot(diamonds, aes(x = color, y = price)) + geom_boxplot() + theme_minimal()
-ggplot(diamonds, aes(x = clarity, y = price)) + geom_boxplot() + theme_minimal()
+ggplot(diamonds, aes(x = carat, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+  ggtitle("Diamonds: Price vs. Carat") + theme_bw()
+
+ggplot(diamonds, aes(x = depth, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+  ggtitle("Diamonds: Price vs. Depth") + theme_bw()
+
+ggplot(diamonds, aes(x = table, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+  ggtitle("Diamonds: Price vs. Table") + theme_bw()
+
+ggplot(diamonds, aes(x = x, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+  ggtitle("Diamonds: Price vs. X") + theme_bw()
+
+ggplot(diamonds, aes(x = y, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+  ggtitle("Diamonds: Price vs. Y") + theme_bw()
+
+ggplot(diamonds, aes(x = z, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+  ggtitle("Diamonds: Price vs. Z") + theme_bw()
+
+#####################################################
+#                 Stačiakampės diagramos            #  
+#####################################################
+
+ggplot(diamonds, aes(x = cut, y = price)) + geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
+  ggtitle("Diamonds: Price vs. Cut") + theme_bw()
+
+ggplot(diamonds, aes(x = color, y = price)) + geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
+  ggtitle("Diamonds: Price vs. Color") + theme_bw()
+
+ggplot(diamonds, aes(x = clarity, y = price)) + geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
+  ggtitle("Diamonds: Price vs. Clarity") + theme_bw()
+
 
 #####################################################
 #              Multikolinearumo patikra             #  
