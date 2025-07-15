@@ -62,7 +62,15 @@ numeric_vars <- diamonds %>%
   select_if(is.numeric)
 
 cor_matrix <- cor(numeric_vars)
-corrplot(cor_matrix, method = "color", addCoef.col = "black")
+
+corrplot(
+  cor_matrix,
+  method = "color",
+  col = colorRampPalette(c("white", "cadetblue3", "darkslateblue"))(200),
+  addCoef.col = "white",      # reikšmių spalva
+  tl.col = "black",           # kintamųjų pavadinimų spalva
+  outline = TRUE              # langelių kraštai
+)
 
 lm_model <- lm(price ~ carat + depth + table + color + cut + clarity, data = diamonds)
 vif(lm_model)
