@@ -12,10 +12,11 @@ library(quantreg)
 data("diamonds")  # Iš ggplot2 paketo
 
 #####################################################
-#         Tikrinam ar yra nulinių reikšmių          #  
+#     Tikrinam ar yra nulinių ir NA reikšmių        #  
 #####################################################
 
 colSums(diamonds == 0)
+colSums(is.na(diamonds))
 
 #####################################################
 #                  Sklaidos diagramos               #  
