@@ -17,5 +17,9 @@ Analizės metu naudotas R paketo, *ggplot2* bibliotekos duomenų rinkinys *diamo
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/cedb97e9-f8b2-481a-9768-2651511bcd41" />
 
 
+<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/9a46c52a-6abc-4678-b25c-355e124a881d" />
+
+
+<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/8978acfc-8af5-4e3f-8f7f-f37faf40e097" />
 
 
