@@ -12,11 +12,14 @@ library(quantreg)
 data("diamonds")  # Iš ggplot2 paketo
 
 #####################################################
-#     Tikrinam ar yra nulinių ir NA reikšmių        #  
+#     Tikrinam ar yra nulinių ir NA reikšmių        #
+#     Priklausomo kintamojo pasiskirstymo grafikas  #
 #####################################################
 
 colSums(diamonds == 0)
 colSums(is.na(diamonds))
+hist(diamonds$price, breaks = 50, main = "Histogram of Price", xlab = "Price", col = "cadetblue3", border = "black")
+
 
 #####################################################
 #                  Sklaidos diagramos               #  
