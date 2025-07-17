@@ -78,7 +78,13 @@ for (i in seq_along(taus)) {
 }
 ```
 
-Matematinis
+Matematinis atsako ir kovariančių užrašymas bei kvantilių regresijos modelio struktūra, kuri buvo sudaryta remiantis teorinio aprašymo formulėmis yra pateikiami žemiau esančiame paveiksle. Čia *y* yra atsakas, *x* - kovariančių ir intercepto (laisvojo nario) vektoriaus komponentės vektorius.
+> [!NOTE]
+> Interceptas užtikrina, kad net jei visi kiti kintamieji būtų lygūs nuliui, modelis vis tiek turi pastovią pradžios reikšmę ir pastovų poslinkį.
+
 <img width="614" height="256" alt="Image" src="https://github.com/user-attachments/assets/fa3ddca5-8e2d-4c6d-b67b-31d10dfbc6f1" />
 
 
+<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/4d4d10d2-ec5c-4d07-a1cb-4a1b31966c2b" />
+
+<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/dbc1a4a0-7535-4899-a4cf-db06cb15e60b" />
