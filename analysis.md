@@ -67,8 +67,18 @@ Analizės metu naudotos τ reikšmės nuo 0.1, 0.2,..., 0.9. Sukurtas tuščias 
 taus <- seq(0.1, 0.9, by = 0.1)
 mse_values <- numeric(length(taus))
 ```
+Toliau sukurtas ciklas, kuris eina per kiekvieną τ elementą. Taip pat ciklo metu yra sukuriami kvantilių regresijos modeliai, kurie yra apmokomi su mokymo aibės duomenimis. Po modelio sukūrimo buvo atliktas atsako reikšmės prognozavimas (su testavimo duomenimis) ir apskaičiuojama vidutinė kvadratinė paklaida, kurios reikšmė įrašyta į anksčiau sukurtą vektorių.
 
+```
+for (i in seq_along(taus)) {
+  tau <- taus[i]
+  model <- rq(price ~ carat + depth + table + color + cut + clarity, tau = tau, data = train_data)
+  preds <- predict(model, newdata = test_data)
+  mse_values[i] <- mean((test_data$price - preds)^2)
+}
+```
 
+Matematinis
 <img width="614" height="256" alt="Image" src="https://github.com/user-attachments/assets/fa3ddca5-8e2d-4c6d-b67b-31d10dfbc6f1" />
 
 
