@@ -33,9 +33,17 @@ Atlikus pradinę analizę sekantis žingsnis ką privalome padaryti yra patikrin
 
 kvantilių regresija vis tiek veikia. Tačiau reikia patikrinti ar kintamieji nėra tarpusavyje susiję. Multikolinearumui identifikuoti pasitelkta koreliacijų matrica, bei VIF reikšmėmis.
 
-Iš koreliacijos matricos matom, jog smarkiausiai su priklausomu kintamuoju *price* koreliuoja *carat*, *X*, *Y* bei *Z* kintamieji, tačiau matmenų kovariantės taip pat turi smarkų ryšį tarpusavyje. Įtraukiant *X*, *Y* ir *Z* kintamuosius į modelį, galima susidurti su multikolinearumo problema. Tai yra dar viena priežastis, kodėl šio tipo duomenys nėra įtraukti konstruojant kvantilių regresijos modelį.
+### Koreliacijos matrica ###
+
+Iš koreliacijos matricos matom, jog smarkiausiai su priklausomu kintamuoju *price* koreliuoja *carat*, *X*, *Y* bei *Z* kintamieji, tačiau matmenų kovariantės taip pat turi smarkų ryšį tarpusavyje. Įtraukiant *X*, *Y* ir *Z* kintamuosius į modelį, galima susidurti su multikolinearumo problema. Tai yra dar viena priežastis, kodėl šio tipo duomenys nėra įtraukti konstruojant kvantilių regresijos modelį. Stipriausia koreliacija su atsako kintamuoju *price* matoma *carat* dalyje, kuri siekė net 0,92. Galima galvoti, jog šis kintamasis bus vienas reikšmingiausių faktorių nulemiančių kainas.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/b4c8901b-f606-4296-955f-8b8e805b5162" />
+
+### VIF reikšmės ###
+
+Dar viena multikolinearumo patikra atlikta naudojant VIF reikšmes. VIF rodo, kiek daug padidėja sukurto modelio koeficiento standartinė paklaida dėl to, kad kintamieji tarpusavyje koreliuoja. Teorijoje yra sakoma, jog jeigu VIF > 4, tuomet ryšys tarp kintamųjų egzistuoja ir tikėtina, jog multikolinearumas gali sukelti problemų. Tokiu atveju derėtų spręsti šią problemą įtraukiant naujus arba panaikinant netinkamus kintamuosius.
+
+Žemiau pateiktoje lentelėje nurodomi VIF reikšmių gauti rezultatai.
 
 | Kintamieji  | VIF |
 | ------------- | ------------- |
@@ -46,7 +54,7 @@ Iš koreliacijos matricos matom, jog smarkiausiai su priklausomu kintamuoju *pri
 | cut  | 1,93  |
 | clarity  | 1,30  |
 
-Visos gautos VIF reikšmės yra < 4, todėl užfiksuota žema koreliacija.
+Visos gautos VIF reikšmės yra < 4, todėl užfiksuota žema koreliacija. Kintamieji yra galimi naudoti modelyje.
 
 
 
