@@ -26,8 +26,27 @@ Kategorinių kintamųjų reikšmių pasiskirstymas stebėtas stačiakampėmis di
 
 ## Prielaidų patikra ##
 
-Atlikus pradinę analizę sekantis žingsnis ką privalone padaryti yra patikrinti prielaidas. Kvantilių regresinėje analizėje 
+Atlikus pradinę analizę sekantis žingsnis ką privalome padaryti yra patikrinti prielaidas. Kvantilių regresinėje analizėje, skirtingai nei kito tipo analizėse, nereikia tikrinti normalumo ar heteroskedatiškumo, nes ji niekur nenaudoja prielaidų apie klaidų skirstinį ar jų vienodą sklaidą. Todėl net jei likučiai:
+
+- nėra normalūs,
+- jų sklaida kinta (heteroskedastiškumas),
+
+kvantilių regresija vis tiek veikia. Tačiau reikia patikrinti ar kintamieji nėra tarpusavyje susiję. Multikolinearumui identifikuoti pasitelkta koreliacijų matrica, bei VIF reikšmėmis.
+
+Iš koreliacijos matricos matom, jog smarkiausiai su priklausomu kintamuoju *price* koreliuoja *carat*, *X*, *Y* bei *Z* kintamieji, tačiau matmenų kovariantės taip pat turi smarkų ryšį tarpusavyje. Įtraukiant *X*, *Y* ir *Z* kintamuosius į modelį, galima susidurti su multikolinearumo problema. Tai yra dar viena priežastis, kodėl šio tipo duomenys nėra įtraukti konstruojant kvantilių regresijos modelį.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/b4c8901b-f606-4296-955f-8b8e805b5162" />
+
+| Kintamieji  | VIF |
+| ------------- | ------------- |
+| carat   | 1,32  |
+| depth  | 1,38  |
+| table  | 1,79  |
+| color  | 1,17  |
+| cut  | 1,93  |
+| clarity  | 1,30  |
+
+Visos gautos VIF reikšmės yra < 4, todėl užfiksuota žema koreliacija.
+
 
 
