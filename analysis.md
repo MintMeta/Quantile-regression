@@ -56,5 +56,19 @@ Dar viena multikolinearumo patikra atlikta naudojant VIF reikšmes. VIF rodo, ki
 
 Visos gautos VIF reikšmės yra < 4, todėl užfiksuota žema koreliacija. Kintamieji yra galimi naudoti modelyje.
 
+## Kvantilių regresija ##
+> [!NOTE]
+> Duomenų rinkinys buvo padalintas į mokymo ir testavimo aibes santykiu 90/10, kur 90 % duomenų buvo naudojami modelio apmokymui, o likusi 10 % dalis - testavimui.
+> Reikšmė τ (tau) yra kvantilio lygis, kuris yra tarp 0 ir 1. 
+
+Analizės metu naudotos τ reikšmės nuo 0.1, 0.2,..., 0.9. Sukurtas tuščias vektorius, kuriame talpintos MSE metrikų reikšmės. Šio vektoriaus ilgis atitinka τ reikšmių kiekiui (kadangi į šį vektorių buvo įrašomi vidutinės kvadratinės paklaidos (MSE) rezultatai kiekvienam τ).
+
+```
+taus <- seq(0.1, 0.9, by = 0.1)
+mse_values <- numeric(length(taus))
+```
+
+
+<img width="614" height="256" alt="Image" src="https://github.com/user-attachments/assets/fa3ddca5-8e2d-4c6d-b67b-31d10dfbc6f1" />
 
 
