@@ -87,4 +87,4 @@ Matematinis atsako ir kovariančių užrašymas bei kvantilių regresijos modeli
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/4d4d10d2-ec5c-4d07-a1cb-4a1b31966c2b" />
 
-<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/dbc1a4a0-7535-4899-a4cf-db06cb15e60b" />
+<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/ed41c1d0-03bc-4059-bac2-246cb347b591" />
