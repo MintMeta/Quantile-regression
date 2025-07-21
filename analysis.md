@@ -35,7 +35,7 @@ kvantilių regresija vis tiek veikia. Tačiau reikia patikrinti ar kintamieji n�
 
 ### Koreliacijos matrica ###
 
-Iš koreliacijos matricos matom, jog smarkiausiai koreliuoja *carat*, *X*, *Y* bei *Z* kintamieji, tačiau matmenų kovariantės taip pat turi smarkų ryšį tarpusavyje. Įtraukiant *X*, *Y* ir *Z* kintamuosius į modelį, galima susidurti su multikolinearumo problema. Tai yra dar viena priežastis, kodėl šio tipo duomenys nėra įtraukti konstruojant kvantilių regresijos modelį. Stipriausia koreliacija su atsako kintamuoju *price* matoma *carat* dalyje, kuri siekė net 0,92. Galima galvoti, jog šis kintamasis bus vienas reikšmingiausių faktorių nulemiančių kainas.
+Iš koreliacijos matricos matom, jog smarkiausiai tarpusavyje koreliuoja *carat*, *X*, *Y* bei *Z* kintamieji. Įtraukiant *X*, *Y* ir *Z* kintamuosius į modelį, galima susidurti su multikolinearumo problema. Tai yra dar viena priežastis, kodėl šio tipo duomenys nėra įtraukti konstruojant kvantilių regresijos modelį.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/2909c3b9-83ca-4046-b981-c43fe36ca261" />
 
