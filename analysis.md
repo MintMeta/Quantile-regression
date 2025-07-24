@@ -97,6 +97,10 @@ Pirmame grafike galima matyti, jog abi linijos yra labai arti viena kitos. Tai g
 Nagrinėjant empirinių ir teorinių tikimybių skirtumų grafiką taip pat akivaizdu, kad skirtumas tarp tikimybių yra itin mažas, o ties τ = 0.8 reikšme empirinė tikimybė atitinka teorinę.
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/ed41c1d0-03bc-4059-bac2-246cb347b591" />
 
+Remiantis teorinėmis matematinėmis formulių išraiškomis buvo apskaičiuota vidutinė kvantilių nuostolių funkcija, kuri iš esmės parodo kiek vidutiniškai neteisingos yra kvantilio 𝜏 prognozės.
 
+- Kuo mažesnė reikšmė – tuo modelis geriau atspindi pasirinktą kvantilį.
+
+<img width="612" height="667" alt="Image" src="https://github.com/user-attachments/assets/684641ef-32f5-45f0-a536-bd6c345af320" />
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/04f90c1c-405d-48f7-9aa1-855818ae0107" />
