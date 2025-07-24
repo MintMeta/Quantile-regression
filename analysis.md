@@ -84,7 +84,19 @@ Matematinis atsako ir kovariančių užrašymas bei kvantilių regresijos modeli
 
 <img width="614" height="256" alt="Image" src="https://github.com/user-attachments/assets/fa3ddca5-8e2d-4c6d-b67b-31d10dfbc6f1" />
 
+Toliau stebėta kaip modelis tiksliai atlieka prognozes. Modeliui vertinti pasitelkta MSE (angl. mean squared errror) metrika, kuri rodo vidutinį skirtumą tarp tikrųjų ir modelio prognozuotų reikšmių. Remiantis grafiko rezultatais matoma, jog mažiausia paklaida gauta kai τ = 0.6 ir tai rodo, jog prognozuojamas 60‑asis procentilis kvantilis suteikė mažiausią prognozės dispersiją lyginant su faktinėmis kainomis testavimo duomenyse. Šiame kvantilyje prognozės geriausiai minimizuoja kvadratinę paklaidą.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/4d4d10d2-ec5c-4d07-a1cb-4a1b31966c2b" />
 
+Taip pat svarbu pasižiūrėti ar modelio prognozuoti kvantiliai atitinka tikrąjį duomenų pasiskirstymą. 
+- Juoda linija vaizduoja empirinę tikimybę, kuri yra apskaičiuota naudojantis testiniais duomenimis.
+- Raudona linija rodo tobulą modelio prognozuojamų kvantilių atitikimą teoriniams kvantiliams. T. y. empirinė tikimybė visiškai sutampa su teorine (kiek teoriškai turėtų būti, tiek ir yra praktikoje).
+
+Pirmame grafike galima matyti, jog abi linijos yra labai arti viena kitos. Tai geras signalas, rodantis, jog empirinės tikimybės beveik sutampa su teorinėmis ir pasirinkta kvantilių regresija stabiliai atlieka prognozes.
+
+Nagrinėjant empirinių ir teorinių tikimybių skirtumų grafiką taip pat akivaizdu, kad skirtumas tarp tikimybių yra itin mažas, o ties τ = 0.8 reikšme empirinė tikimybė atitinka teorinę.
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/ed41c1d0-03bc-4059-bac2-246cb347b591" />
+
+
+
+<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/04f90c1c-405d-48f7-9aa1-855818ae0107" />
