@@ -104,3 +104,5 @@ Remiantis teorinėmis matematinėmis formulių išraiškomis buvo apskaičiuota 
 <img width="612" height="667" alt="Image" src="https://github.com/user-attachments/assets/684641ef-32f5-45f0-a536-bd6c345af320" />
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/04f90c1c-405d-48f7-9aa1-855818ae0107" />
+
+<img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
