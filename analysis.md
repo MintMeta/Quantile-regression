@@ -117,6 +117,14 @@ Taškai rodo faktinių duomenų pasiskirstymą, kai *x* ašyje - deimantų karat
 
 Kadangi kvantiliai modeliuoja skirtingus kainos pasiskirstymo lygmenius, tai galima teigti, kad $${\color{red}0.1 \space \color{red}kvantilis}$$ atskiria deimantus taip, kad apytiksliai 10 % duomenų taškų (deimantų) yra žemiau šios linijos, o apie 90% – virš jos. Žemiau linijos esantys deimantai, kurių kaina yra tarp 10 % pigiausių (palyginus su kitais turinčiais panašius karatus). Virš linijos yra deimantai, kurių kaina yra didesnė nei ta 10 % pigiausių – t. y. jie patenka į brangesnių 90 % grupę.
 
-$${\color{limegreen}0.6 \space \color{limegreen}kvantilis}$$ atskiria duomenis santykiu 60:40. Po šia linija yra 60 % deimantų, kurie yra pigesni ir turintys panašias *carat* savybes. Analizuojant grafiką galima matyti, jog ties 1 karatu, 60 % deimantų kainavo ne daugiau nei 5000
+$${\color{limegreen}0.6 \space \color{limegreen}kvantilis}$$ atskiria duomenis santykiu 60:40. Po šia linija tikėtina, kad yra 60 % deimantų, kurie yra pigesni ir turintys panašias *carat* savybes. Analizuojant grafiką galima matyti, jog ties 1 karatu, modelis tikisi, kad 60 % deimantų kainavo ne daugiau nei $5000, o 60 % 2-jų karatų deimantų kaina buvo buvo ne didesnė nei $125,000.
+
+> [!IMPORTANT]
+> Grafike matomas taškų tankis ***NĖRA*** tiesiogiai proporcingas kvantiliui. Tai yra, nors modelis matematiškai pasako, kad: „60 % stebėjimų tikėtina bus žemiau linijos“, tai dar ne reiškia, kad vizualiai matysime 60 % taškų apačioje.
+
+Akivaizdu, jog pigių, vidutinių ir brangių deimantų kainos priklauso nuo jų svorių, kadangi kvantilių linijos palaipsniui kyla. Galima teigti, jog didėjant deimantų svoriui, didėja ir jų kaina.
+
+Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kainų įvairove. Pastebima, jog duomenys yra labiau išsibarstę ir tai reiškia, kad svoris nebevienareikšmiškai nulemia kainą. Galbūt atsiranda didesnė įtaką kitų kokybės savybių kaip spalva, 
+
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
