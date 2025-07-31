@@ -103,6 +103,18 @@ Remiantis teorinėmis matematinėmis formulių išraiškomis buvo apskaičiuota 
 
 <img width="612" height="667" alt="Image" src="https://github.com/user-attachments/assets/684641ef-32f5-45f0-a536-bd6c345af320" />
 
+Kvantilių nuostolių funkcijos grafike galima matyti, jog mažiausias nuostolis pastebimas kai τ = 0.1, τ = 0.2 ir τ = 0.9. Todėl galima teigti, jog modelis geriausiai geba prognozuoti pigesnius ir brangesnius deimantus, o dažniausiai klysta prognozuodamas vidutinės kainos deimantus ties τ = 0.6 kvantiliu.
+
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/04f90c1c-405d-48f7-9aa1-855818ae0107" />
+
+Sekančiame grafike nurodomas kvantilių regresijos palyginimas su OLS (tiesine regresija angl. *Ordinary Least Squares*)
+Taškai rodo faktinių duomenų pasiskirstymą, kai *x* ašyje - deimantų karatai, o *y* ašyje - kaina. 
+
+- $${\color{orange}OLS \space \color{orange}regresija}$$ - prognozuoja vidutinę kainą pagal *carat*.
+- $${\color{red}0.1 \space \color{red}kvantilis}$$ - rodo kainos elgesį pigesnių deimantų grupėje.
+- $${\color{green}0.6 \space \color{green}kvantilis}$$ - rodo kainos elgesį šiek tiek brangesnių nei vidutinių deimantų grupėje.
+- $${\color{darkorchid}0.9 \space \color{darkorchid}kvantilis}$$ - rodo brangiausių deimantų kainą pagal *carat*.
+
+
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
