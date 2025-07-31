@@ -131,7 +131,7 @@ Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kain�
 
 ## Išvados ##
 
--
--
+- Deimantai, sveriantys 1 ir daugiau karatų, pasižymi gerokai įvairesnėmis kainomis
+- Pastebimas didelis kainų išsibarstymas rodo, kad pirkėjai vertina ne tik masę, bet ir daugybę kitų savybių, ir tai lemia didelį kainų spektrą.
 -
 -
