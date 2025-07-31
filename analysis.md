@@ -124,7 +124,7 @@ $${\color{limegreen}0.6 \space \color{limegreen}kvantilis}$$ atskiria duomenis s
 
 Akivaizdu, jog pigių, vidutinių ir brangių deimantų kainos priklauso nuo jų svorių, kadangi kvantilių linijos palaipsniui kyla. Galima teigti, jog didėjant deimantų svoriui, didėja ir jų kaina.
 
-Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kainų įvairove. Pastebima, jog duomenys yra labiau išsibarstę ir tai reiškia, kad svoris nebevienareikšmiškai nulemia kainą. Galbūt atsiranda didesnė įtaką kitų kokybės savybių kaip spalva, 
+Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kainų įvairove. Pastebima, jog duomenys yra labiau išsibarstę ir tai reiškia, kad svoris nebevienareikšmiškai nulemia kainą. Galbūt atsiranda didesnė įtaka kitų kokybės savybių kaip spalva, skaidrumas ar pjūvio kokybė. Taip pat tai gali lemti ir kiti iššoriniai veiksniai (galbūt rinka pasiūlo daug įvairių variantų šiame svorio intervale).
 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
