@@ -128,3 +128,10 @@ Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kain�
 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
+
+## Išvados ##
+
+-
+-
+-
+-
