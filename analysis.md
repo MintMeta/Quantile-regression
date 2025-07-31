@@ -112,9 +112,11 @@ Taškai rodo faktinių duomenų pasiskirstymą, kai *x* ašyje - deimantų karat
 
 - $${\color{orange}OLS \space \color{orange}regresija}$$ - prognozuoja vidutinę kainą pagal *carat*.
 - $${\color{red}0.1 \space \color{red}kvantilis}$$ - rodo kainos elgesį pigesnių deimantų grupėje.
-- $${\color{green}0.6 \space \color{green}kvantilis}$$ - rodo kainos elgesį šiek tiek brangesnių nei vidutinių deimantų grupėje.
+- $${\color{limegreen}0.6 \space \color{limegreen}kvantilis}$$ - rodo kainos elgesį šiek tiek brangesnių nei vidutinių deimantų grupėje.
 - $${\color{darkorchid}0.9 \space \color{darkorchid}kvantilis}$$ - rodo brangiausių deimantų kainą pagal *carat*.
 
+Kadangi kvantiliai modeliuoja skirtingus kainos pasiskirstymo lygmenius, tai galima teigti, kad $${\color{red}0.1 \space \color{red}kvantilis}$$ atskiria deimantus taip, kad apytiksliai 10 % duomenų taškų (deimantų) yra žemiau šios linijos, o apie 90% – virš jos. Žemiau linijos esantys deimantai, kurių kaina yra tarp 10 % pigiausių (palyginus su kitais turinčiais panašius karatus). Virš linijos yra deimantai, kurių kaina yra didesnė nei ta 10 % pigiausių – t. y. jie patenka į brangesnių 90 % grupę.
 
+$${\color{limegreen}0.6 \space \color{limegreen}kvantilis}$$ atskiria duomenis santykiu 60:40. Po šia linija yra 60 % deimantų, kurie yra pigesni ir turintys panašias *carat* savybes. Analizuojant grafiką galima matyti, jog ties 1 karatu, 60 % deimantų kainavo ne daugiau nei 5000
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
