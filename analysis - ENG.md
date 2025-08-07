@@ -80,7 +80,7 @@ The mathematical response and covariance notation, as well as the structure of t
 > [!NOTE]
 > The intercept ensures that even if all other variables are equal to zero, the model still has a constant initial value and a constant offset.
 
-<img width="614" height="256" alt="Image" src="https://github.com/user-attachments/assets/fa3ddca5-8e2d-4c6d-b67b-31d10dfbc6f1" />
+<img width="611" height="217" alt="Image" src="https://github.com/user-attachments/assets/3892bd64-c54d-4604-9971-9c5eba07faf3" />
 
 Next, we observed how accurately the model makes predictions. The model was evaluated using the MSE (mean squared error) metric, which shows the average difference between the actual and predicted values. Based on the results of the graph, it can be seen that the smallest error was obtained when τ = 0.6, which indicates that the predicted 60th percentile quantile provided the smallest forecast dispersion compared to the actual prices in the test data. In this quantile, the forecasts best minimize the square error. 
 
@@ -100,7 +100,7 @@ Based on theoretical mathematical expressions, the average quantile loss functio
 
 The lower the value, the better the model reflects the selected quantile.
 
-<img width="612" height="667" alt="Image" src="https://github.com/user-attachments/assets/684641ef-32f5-45f0-a536-bd6c345af320" />
+<img width="594" height="669" alt="Image" src="https://github.com/user-attachments/assets/c1ed373a-24c8-4408-a290-60ce75a9d78b" />
 
 The graph of the quantile loss function shows that the smallest loss is observed when τ = 0.1, τ = 0.2, and τ = 0.9. Therefore, it can be said that the model is best at predicting cheaper and more expensive diamonds, and most often errs in predicting medium-priced diamonds at the τ = 0.6 quantile.
 
