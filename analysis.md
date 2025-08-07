@@ -129,11 +129,13 @@ Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kain�
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
 
-Sekantis grafikas vaizduoja deimanto gylio ir kainos priklausomybę. Pastebimas neigiamas gylio poveikis žemiausiame ($${\color{red}0.1}$$) ir aukščiausiame ($${\color{darkorchid}0.9}$$) kvantiliuose, kas leidžia daryti prielaidą, jog brangiausių ir pigiausių deimantų atveju didesnis gylis gali būti laikomas trūkumu, kuris neigiamai paveikia kainą. Kadangi $${\color{darkorchid}0.9 \space \color{darkorchid}kvantilis}$$ grafike patiria smarkesnį nuolydį, todėl brangiausi deimantai yra labiausiai paveikti kainų pokyčių. Per didelis gylis laikomas neidealiu proporcijų atžvilgiu, pažeidžiama estetika, kas gali būti viena iš priežasčių, kodėl produktai įvertinami pigiau nei įprastai.
+Sekantis grafikas vaizduoja deimanto procentinio gylio ir kainos priklausomybę. Pastebimas neigiamas gylio poveikis žemiausiame ($${\color{red}0.1}$$) ir aukščiausiame ($${\color{darkorchid}0.9}$$) kvantiliuose, kas leidžia daryti prielaidą, jog brangiausių ir pigiausių deimantų atveju didesnis gylis gali būti laikomas trūkumu, kuris neigiamai paveikia kainą. Kadangi $${\color{darkorchid}0.9 \space \color{darkorchid}kvantilis}$$ grafike patiria smarkesnį nuolydį, todėl brangiausi deimantai yra labiausiai paveikti kainų pokyčių. Per didelis gylis laikomas neidealiu proporcijų atžvilgiu, pažeidžiama estetika, kas gali būti viena iš priežasčių, kodėl produktai įvertinami pigiau nei įprastai.
 
-Taip pat galima matyti didelį vertikalų duomenų išsibarstymą, kuris yra susitelkęs tarp apytiksliai 58-65 mm gylio. Remiantis šia informacija daroma prielaida, jog to pačio gylio deimantų kaina gali būti labai įvairi ir svyruoti nuo kelių šimtų iki keliolikos tūkstančių dolerių. Taigi, deimanto gylis nėra lemiamas ir vienas pagrindinių veiksnių, kuris smarkiai įtakotų deimantų kainą. 
+Taip pat galima matyti didelį vertikalų duomenų išsibarstymą, kuris yra susitelkęs tarp apytiksliai 58-65 procentinio gylio. Remiantis šia informacija daroma prielaida, jog to pačio gylio deimantų kaina gali būti labai įvairi ir svyruoti nuo kelių šimtų iki keliolikos tūkstančių dolerių. Taigi, procentinis deimanto gylis nėra lemiamas ir vienas pagrindinių veiksnių, kuris smarkiai įtakotų deimantų kainą. 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/aa4438c6-0bb4-413e-86e1-11f686b921f3" />
+
+Dar vienas grafikas, kuriame vaizduojama 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/d937298e-fcce-4bcc-9d7f-efd011c78eb0" />
 
