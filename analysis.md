@@ -126,6 +126,7 @@ Akivaizdu, jog pigių, vidutinių ir brangių deimantų kainos priklauso nuo jų
 
 Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kainų įvairove. Pastebima, jog duomenys yra labiau išsibarstę ir tai reiškia, kad svoris nebevienareikšmiškai nulemia kainą. Galbūt atsiranda didesnė įtaka kitų kokybės savybių kaip spalva, skaidrumas ar pjūvio kokybė. Taip pat tai gali lemti ir kiti iššoriniai veiksniai (galbūt rinka pasiūlo daug įvairių variantų šiame svorio intervale).
 
+$${\color{orange}OLS \space \color{orange}regresijos}$$ linija taip pat stipriai kylanti į viršų. Galima teigti, jog didėjant *carat*, vidutinė kaina taip pat didėja, o santykis tarp šių kintamųjų yra teigiamas ir stiprus.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
 
@@ -137,13 +138,14 @@ Taip pat galima matyti didelį vertikalų duomenų išsibarstymą, kuris yra sus
 
 Dar vienas grafikas, kuriame vaizduojama kintamojo *table* (deimanto viršaus plotis plačiausio taško atžvilgiu) ir kainos analizė. Kaip ir ankstesniame grafike matomas platus vertikalus išsibarstymas, kas leidžia manyti, jog panašaus pločio deimantų kainos gali ženkliai skirtis. Deimantai, kurių pločio vertės buvo žemesnė nei 50, yra ganėtinai reti atvejai ir gali būti laikomi išskirtimis. Kintamasis *table* nėra stipriai susijęs su deimanto kaina ir vienas pats nėra pakankamas požymis kainai paaiškinti. Brangesniems deimantams ($${\color{darkorchid}0.9 \space \color{darkorchid}kvantilio}$$ ir $${\color{limegreen}0.6 \space \color{limegreen}kvantilio}$$ linijos) didesnis deimanto viršaus plotis gali būti susijęs su didesne kaina, bet poveikis vis tiek nėra stiprus. 
 
-Klasikinės tiesinės regresijos atveju $${\color{orange}OLS \space \color{orange}linija}$$ kyla aukštyn ir tai rodo, jog *table* pokyčiai turi labai silpną teigiamą įtaką vidutinei deimantų kainai.
+Klasikinės tiesinės regresijos atveju $${\color{orange}OLS \space \color{orange}linija}$$ kyla aukštyn ir tai rodo, jog *table* pokyčiai turi labai silpną teigiamą įtaką vidutinei deimantų kainai. Bet dėl didelio vertikalus išsibarstymo sakoma, kad $${\color{orange}OLS}$$ nėra labai informatyvi šiuo atveju. 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/d937298e-fcce-4bcc-9d7f-efd011c78eb0" />
 
 ## Išvados ##
 
 - Deimantai, sveriantys 1 ir daugiau karatų, pasižymi gerokai įvairesnėmis kainomis
-- Pastebimas didelis kainų išsibarstymas rodo, kad pirkėjai vertina ne tik masę, bet ir daugybę kitų savybių, ir tai lemia didelį kainų spektrą.
--
--
+- Pastebimas didelis kainų išsibarstymas deimantui pasiekus 1 ir daugiau karatų. Tai rodo, kad pirkėjai vertina ne tik masę, bet ir daugybę kitų savybių, ir tai lemia didelį kainų spektrą.
+- Brangiausiai ir pigiausiai vertinamiems deimantams didesnis gylis sumažina produkto vertę.
+- Deimantų svoris yra pagrindinis veiksnys stipriausiai įtakojantis kainų pokyčius.
+- 
