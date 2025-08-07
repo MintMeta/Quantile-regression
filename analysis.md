@@ -135,7 +135,9 @@ Taip pat galima matyti didelį vertikalų duomenų išsibarstymą, kuris yra sus
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/aa4438c6-0bb4-413e-86e1-11f686b921f3" />
 
-Dar vienas grafikas, kuriame vaizduojama 
+Dar vienas grafikas, kuriame vaizduojama kintamojo *table* (deimanto viršaus plotis plačiausio taško atžvilgiu) ir kainos analizė. Kaip ir ankstesniame grafike matomas platus vertikalus išsibarstymas, kas leidžia manyti, jog panašaus pločio deimantų kainos gali ženkliai skirtis. Deimantai, kurių pločio vertės buvo žemesnė nei 50, yra ganėtinai reti atvejai ir gali būti laikomi išskirtimis. Kintamasis *table* nėra stipriai susijęs su deimanto kaina ir vienas pats nėra pakankamas požymis kainai paaiškinti. Brangesniems deimantams ($${\color{darkorchid}0.9 \space \color{darkorchid}kvantilio}$$ ir $${\color{limegreen}0.6 \space \color{limegreen}kvantilio}$$ linijos) didesnis deimanto viršaus plotis gali būti susijęs su didesne kaina, bet poveikis vis tiek nėra stiprus. 
+
+Klasikinės tiesinės regresijos atveju $${\color{orange}OLS \space \color{orange}linija}$$ kyla aukštyn ir tai rodo, jog *table* pokyčiai turi labai silpną teigiamą įtaką vidutinei deimantų kainai.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/d937298e-fcce-4bcc-9d7f-efd011c78eb0" />
 
