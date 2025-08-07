@@ -46,7 +46,7 @@ Another multicollinearity check was performed using VIF values. VIF shows how mu
 The table below shows the results obtained for the VIF values.
 
 | Variables  | VIF |
-| ------------- | ------------ - |
+| ------------- | ------------- |
 | carat   | 1.32  |
 | depth  | 1.38  |
 | table  | 1.79  |
