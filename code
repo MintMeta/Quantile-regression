@@ -8,6 +8,8 @@ library(tidyr)
 library(corrplot)
 library(car)
 library(quantreg)
+library(patchwork)
+library(performance)
 
 data("diamonds")  # Iš ggplot2 paketo
 
@@ -26,58 +28,77 @@ hist(diamonds$price, breaks = 50, main = "Histogram of Price", xlab = "Price", c
 #####################################################
 
 
-ggplot(diamonds, aes(x = carat, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+p1 <- ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(shape = 21, fill = "cadetblue3", color = "black") +
   ggtitle("Diamonds: Price vs. Carat") + theme_bw()
 
-ggplot(diamonds, aes(x = depth, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+p2 <- ggplot(diamonds, aes(x = depth, y = price)) +
+  geom_point(shape = 21, fill = "cadetblue3", color = "black") +
   ggtitle("Diamonds: Price vs. Depth") + theme_bw()
 
-ggplot(diamonds, aes(x = table, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+p3 <- ggplot(diamonds, aes(x = table, y = price)) +
+  geom_point(shape = 21, fill = "cadetblue3", color = "black") +
   ggtitle("Diamonds: Price vs. Table") + theme_bw()
 
-ggplot(diamonds, aes(x = x, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+p4 <- ggplot(diamonds, aes(x = x, y = price)) +
+  geom_point(shape = 21, fill = "cadetblue3", color = "black") +
   ggtitle("Diamonds: Price vs. X") + theme_bw()
 
-ggplot(diamonds, aes(x = y, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+p5 <- ggplot(diamonds, aes(x = y, y = price)) +
+  geom_point(shape = 21, fill = "cadetblue3", color = "black") +
   ggtitle("Diamonds: Price vs. Y") + theme_bw()
 
-ggplot(diamonds, aes(x = z, y = price)) + geom_point(shape = 21, fill = "cadetblue3", color = "black") +
+p6 <- ggplot(diamonds, aes(x = z, y = price)) +
+  geom_point(shape = 21, fill = "cadetblue3", color = "black") +
   ggtitle("Diamonds: Price vs. Z") + theme_bw()
+
+(p1 | p2 | p3) /
+(p4 | p5 | p6)
 
 #####################################################
 #                 Stačiakampės diagramos            #  
 #####################################################
 
-ggplot(diamonds, aes(x = cut, y = price)) + geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
-  ggtitle("Diamonds: Price vs. Cut") + theme_bw()
+p11 <- ggplot(diamonds, aes(x = cut, y = price)) + 
+  geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
+  ggtitle("Diamonds: Price vs. Cut") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggplot(diamonds, aes(x = color, y = price)) + geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
-  ggtitle("Diamonds: Price vs. Color") + theme_bw()
+p12 <- ggplot(diamonds, aes(x = color, y = price)) + 
+  geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
+  ggtitle("Diamonds: Price vs. Color") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggplot(diamonds, aes(x = clarity, y = price)) + geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
-  ggtitle("Diamonds: Price vs. Clarity") + theme_bw()
+p13 <- ggplot(diamonds, aes(x = clarity, y = price)) + 
+  geom_boxplot(fill = "cadetblue3", color = "black", alpha = 0.6) +
+  ggtitle("Diamonds: Price vs. Clarity") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+(p11 | p12 | p13)
 
 #####################################################
 #              Multikolinearumo patikra             #  
 #####################################################
 
-numeric_vars <- diamonds %>%
-  select_if(is.numeric)
+numeric_X <- diamonds %>%
+  select(carat, depth, table, x, y, z)
 
-cor_matrix <- cor(numeric_vars)
+cor_matrix <- cor(numeric_X)
 
 corrplot(
   cor_matrix,
   method = "color",
   col = colorRampPalette(c("white", "cadetblue3", "darkslateblue"))(200),
-  addCoef.col = "white",      # reikšmių spalva
+  addCoef.col = "white",      # koreliacijos skaičių spalva
   tl.col = "black",           # kintamųjų pavadinimų spalva
-  outline = TRUE              # langelių kraštai
+  outline = TRUE              # juodi krašteliai aplink langelius
 )
 
 lm_model <- lm(price ~ carat + depth + table + color + cut + clarity, data = diamonds)
-vif(lm_model)
+check_collinearity(lm_model)
 
 #####################################################
 #   Duomenų dalyba į mokymo ir testavimo aibes      #  
@@ -119,17 +140,42 @@ for (i in seq_along(taus)) {
   empirical_probs[i] <- mean(test_data$price <= preds)
 }
 
-plot(taus, empirical_probs, type = "b", col = "blue", pch = 19,
-     ylim = c(0,1), ylab = "Empirinė tikimybė", xlab = "Tau")
-abline(0, 1, col = "red", lty = 2)
+par(mfrow = c(1, 2),    # 1 eilė, 2 grafikai
+    mar = c(5, 5, 4, 2) # didesnės paraštės
+)
+
+plot(taus, empirical_probs,
+     type = "b",
+     col = "black",
+     pch = 21,             # tuščiaviduris apskritimas su užpildu
+     bg = "cadetblue3",       # užpildo spalva
+     cex = 1.8,            # taškų dydis
+     lwd = 3,              # linijos storis
+     ylim = c(0,1),
+     ylab = "Empirical probability",
+     xlab = "Tau",
+     main = "Empirical vs Theoretical",
+     panel.first = grid(col = "grey80", lty = 1) # tinklas
+)
+abline(0, 1, col = "red", lwd = 2, lty = 2)
 
 #####################################################
 #        Empirinių  tikimybių skirtumas             #  
 #####################################################
 
-plot(taus, empirical_probs - taus, type = "b", col = "purple", pch = 19,
-     ylab = "Empirinė - Teorinė", xlab = "Tau")
-abline(h = 0, col = "red", lty = 2)
+plot(taus, empirical_probs - taus,
+     type = "b",
+     col = "black",
+     pch = 21,
+     bg = "cadetblue3",
+     cex = 1.8,
+     lwd = 3,
+     ylab = "Empirical - Theoretical",
+     xlab = "Tau",
+     main = "Difference",
+     panel.first = grid(col = "grey80", lty = 1)
+)
+abline(h = 0, col = "red", lwd = 2, lty = 2)
 
 #####################################################
 #   Kvantilių nuostolių funkcijos skaičiavimas      #  
@@ -149,8 +195,7 @@ for (i in seq_along(taus)) {
   loss_values[i] <- quantile_loss(test_data$price, preds, tau)
 }
 
-barplot(loss_values, names.arg = taus, main = "Quantile Loss vs Tau", xlab = "Tau", ylab = "Loss")
-
+barplot(loss_values, names.arg = taus, main = "Quantile Loss vs Tau", xlab = "Tau", ylab = "Loss", col = "cadetblue3", border = "black")
 
 #####################################################
 #      Kvantilių regresijos sklaidos diagramos      #  
@@ -159,7 +204,7 @@ barplot(loss_values, names.arg = taus, main = "Quantile Loss vs Tau", xlab = "Ta
 
 plot_quantile_vs_ols <- function(xvar, data, xlab = NULL, title = NULL) {
   ggplot(data, aes_string(x = xvar, y = "price")) +
-    geom_point(fill = "cadetblue3", color = "black", shape = 21, alpha = 0.3) +
+    geom_point(shape = 21, fill = "cadetblue3", color = "black", stroke = 0.3, alpha = 0.6) +
     stat_smooth(method = "lm", aes(color = "OLS"), size = 1.2, se = FALSE) +
     geom_quantile(quantiles = 0.1, aes(color = "Quantile 0.1"), size = 1.2) +
     geom_quantile(quantiles = 0.6, aes(color = "Quantile 0.6"), size = 1.2) +
@@ -182,7 +227,7 @@ plot_quantile_vs_ols <- function(xvar, data, xlab = NULL, title = NULL) {
     ) +
     theme_minimal()
 }
-plot_quantile_vs_ols("carat", diamonds, "Carat", "Diamond price vs carat")
-plot_quantile_vs_ols("depth", diamonds, "Depth", "Diamond price vs depth")
-plot_quantile_vs_ols("table", diamonds, "Table", "Diamond price vs table")
+plot_quantile_vs_ols("carat", diamonds)
+plot_quantile_vs_ols("depth", diamonds)
+plot_quantile_vs_ols("table", diamonds)
 
