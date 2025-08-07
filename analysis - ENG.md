@@ -1,74 +1,72 @@
-# Kvantilių regresinė analizė
+# Quantile regression analysis
 
-## Įvadas ##
+## Introduction ##
 
-**Tyrimo tikslas**: Nustatyti, kaip skirtingi deimantų požymiai veikia deimantų kainą įvairiuose pasiskirstymo kvantiliuose, taip įvertinant skirtumus tarp pigesnių ir brangesnių deimantų.
+**Research objective**: To determine how different diamond characteristics affect diamond prices in various distribution quantiles, thereby assessing the differences between cheaper and more expensive diamonds.
 
-Tyrimo uždaviniai:
-1. Atlikti pradinė duomenų analizę ir pateikti aprašomąją statistiką.
-2. Atrinkus tinkamus regresorius, sudaryti kvantilių regresijos modelį bei išnagrinėti požymius, įtakojančius deimantų kainų augimą.
-3. Įvertinti sukonstruoto modelio tikslumą.
-4. Pateikti rezultatus ir galutines išvadas.
+Research objectives:
+1. Perform initial data analysis and present descriptive statistics.
+2. After selecting appropriate regressors, construct a quantile regression model and examine the characteristics that influence diamond price growth.
+3. To evaluate the accuracy of the constructed model.
+4. To present the results and final conclusions.
 
-## Pradinė duomenų analizė ##
+## Initial data analysis ##
 
-Analizės metu naudotas R paketo, *ggplot2* bibliotekos duomenų rinkinys *diamonds*. Tikrintos praleistos N\A ir nulinės reikšmės bei stebėtas priklausomo kintamojo *price* pasiskirstymas. Remiantis žemiau pateiktu grafiku pastebimas asimetriškas kainos pasiskirstymas. Galima teigti, jog didžiąją dalį duomenų rinkinio sudaro pigesni deimantai. Duomenys nėra normaliai pasiskirstę, tačiau kvantilių regresinė analizė yra atspari nenormalumui, todėl duomenys puikiai tinka tolimesniam tyrimui. 
+The analysis used the R package, *ggplot2* library data set *diamonds*. Missing N\A and zero values were checked and the distribution of the dependent variable *price* was observed. Based on the graph below, an asymmetrical price distribution can be observed. It can be said that the majority of the data set consists of cheaper diamonds. The data is not normally distributed, but quantile regression analysis is resistant to non-normality, so the data is well suited for further investigation.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/cedb97e9-f8b2-481a-9768-2651511bcd41" />
 
-Žemiau pateiktame sklaidų diagramų paveiksle pastebimos kintamųjų X, Y ir Z nulinės reikšmės. Tikėtina, kad jos yra klaidingos ir darys didelę įtaką mūsų modeliui, todėl šių kintamųjų neįtrauksime į kvantilių regresijos modelį. Taip pat galima matyti, jog didėjant karatų svoriui, didėja ir kainos išsibarstymas. Tai rodo, jog pateiktose sklaidų diagramose vyrauja netiesiniai ryšiai.
+The scatter plot below shows zero values for variables X, Y, and Z. These are likely to be erroneous and will have a significant impact on our model, so we will not include these variables in the quantile regression model. It can also be seen that as the weight of carats increases, so does the dispersion of prices. This indicates that the scatter plots presented are dominated by non-linear relationships.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/9a46c52a-6abc-4678-b25c-355e124a881d" />
 
-Kategorinių kintamųjų reikšmių pasiskirstymas stebėtas stačiakampėmis diagramomis. Iš diagramų matome, jog duomenyse yra daug išskirčių, todėl nuspręsta taikyti kvantilių regresiją, kadangi ji nėra jautri išskirtims.
+The distribution of categorical variable values was observed using rectangular diagrams. The diagrams show that there are many outliers in the data, so it was decided to apply quantile regression, as it is not sensitive to outliers.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/921cb032-85f8-4062-880f-3eaa238380b6" />
 
-## Prielaidų patikra ##
+## Checking assumptions ##
 
-Atlikus pradinę analizę sekantis žingsnis ką privalome padaryti yra patikrinti prielaidas. Kvantilių regresinėje analizėje, skirtingai nei kito tipo analizėse, nereikia tikrinti normalumo ar heteroskedatiškumo, nes ji niekur nenaudoja prielaidų apie klaidų skirstinį ar jų vienodą sklaidą. Todėl net jei likučiai:
+After performing the initial analysis, the next step is to check the assumptions. In quantile regression analysis, unlike other types of analysis, there is no need to check for normality or heteroscedasticity, as it does not use any assumptions about the distribution of errors or their uniform dispersion. Therefore, even if the residuals:
 
-- nėra normalūs,
-- jų sklaida kinta (heteroskedastiškumas),
+- are not normal,
+- their dispersion varies (heteroscedasticity),
 
-kvantilių regresija vis tiek veikia. Tačiau reikia patikrinti ar kintamieji nėra tarpusavyje susiję. Multikolinearumui identifikuoti pasitelkta koreliacijų matrica, bei VIF reikšmėmis.
+quantile regression still works. However, it is necessary to check whether the variables are correlated with each other. A correlation matrix and VIF values are used to identify multicollinearity.
 
-### Koreliacijos matrica ###
+### Correlation matrix ###
 
-Iš koreliacijos matricos matom, jog smarkiausiai tarpusavyje koreliuoja *carat*, *X*, *Y* bei *Z* kintamieji. Įtraukiant *X*, *Y* ir *Z* kintamuosius į modelį, galima susidurti su multikolinearumo problema. Tai yra dar viena priežastis, kodėl šio tipo duomenys nėra įtraukti konstruojant kvantilių regresijos modelį.
+The correlation matrix shows that the variables *carat*, *X*, *Y*, and *Z* are most strongly correlated with each other. Including the variables *X*, *Y*, and *Z* in the model may lead to multicollinearity. This is another reason why this type of data is not included when constructing a quantile regression model.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/2909c3b9-83ca-4046-b981-c43fe36ca261" />
 
-### VIF reikšmės ###
+### VIF values ###
 
-Dar viena multikolinearumo patikra atlikta naudojant VIF reikšmes. VIF rodo, kiek daug padidėja sukurto modelio koeficiento standartinė paklaida dėl to, kad kintamieji tarpusavyje koreliuoja. Teorijoje yra sakoma, jog jeigu VIF > 4, tuomet ryšys tarp kintamųjų egzistuoja ir tikėtina, jog multikolinearumas gali sukelti problemų. Tokiu atveju derėtų spręsti šią problemą įtraukiant naujus arba panaikinant netinkamus kintamuosius.
+Another multicollinearity check was performed using VIF values. VIF shows how much the standard error of the coefficient of the created model increases due to the correlation between variables. The theory states that if VIF > 4, then there is a relationship between the variables and it is likely that multicollinearity may cause problems. In this case, the problem should be solved by adding new variables or removing inappropriate ones.
 
-Žemiau pateiktoje lentelėje nurodomi VIF reikšmių gauti rezultatai.
+The table below shows the results obtained for the VIF values.
 
-| Kintamieji  | VIF |
-| ------------- | ------------- |
-| carat   | 1,32  |
-| depth  | 1,38  |
-| table  | 1,79  |
-| color  | 1,17  |
-| cut  | 1,93  |
-| clarity  | 1,30  |
+| Variables  | VIF |
+| ------------- | ------------ - |
+| carat   | 1.32  |
+| depth  | 1.38  |
+| table  | 1.79  |
+| color  | 1.17  |
+| cut  | 1.93  |
+| clarity  | 1.30  |
 
-Visos gautos VIF reikšmės yra < 4, todėl užfiksuota žema koreliacija. Kintamieji yra galimi naudoti modelyje.
+All VIF values obtained are < 4, indicating a low correlation. The variables can be used in the model.
 
-## Kvantilių regresija ##
+## Quantile regression ##
 > [!NOTE]
-> Duomenų rinkinys buvo padalintas į mokymo ir testavimo aibes santykiu 90/10, kur 90 % duomenų buvo naudojami modelio apmokymui, o likusi 10 % dalis - testavimui.
-> Reikšmė τ (tau) yra kvantilio lygis, kuris yra tarp 0 ir 1. 
+> The data set was divided into training and testing sets in a 90/10 ratio, where 90% of the data was used for model training and the remaining 10% for testing.
+> The value τ (tau) is the quantile level, which is between 0 and 1.
 
-Analizės metu naudotos τ reikšmės nuo 0.1, 0.2,..., 0.9. Sukurtas tuščias vektorius, kuriame talpintos MSE metrikų reikšmės. Šio vektoriaus ilgis atitinka τ reikšmių kiekiui (kadangi į šį vektorių buvo įrašomi vidutinės kvadratinės paklaidos (MSE) rezultatai kiekvienam τ).
-
+During the analysis, τ values ranging from 0.1, 0.2, ..., 0.9 were used. An empty vector was created to store the MSE metric values. The length of this vector corresponds to the number of τ values (since the mean square error (MSE) results for each τ were recorded in this vector).
 ```
 taus <- seq(0.1, 0.9, by = 0.1)
 mse_values <- numeric(length(taus))
 ```
-Toliau sukurtas ciklas, kuris eina per kiekvieną τ elementą. Taip pat ciklo metu yra sukuriami kvantilių regresijos modeliai, kurie yra apmokomi su mokymo aibės duomenimis. Po modelio sukūrimo buvo atliktas atsako reikšmės prognozavimas (su testavimo duomenimis) ir apskaičiuojama vidutinė kvadratinė paklaida, kurios reikšmė įrašyta į anksčiau sukurtą vektorių.
-
+Next, a cycle is created that goes through each τ element. During the cycle, quantile regression models are also created, which are trained with the training set data. After the model was created, the response value was predicted (using test data) and the mean square error was calculated, the value of which was recorded in the previously created vector.
 ```
 for (i in seq_along(taus)) {
   tau <- taus[i]
@@ -78,74 +76,75 @@ for (i in seq_along(taus)) {
 }
 ```
 
-Matematinis atsako ir kovariančių užrašymas bei kvantilių regresijos modelio struktūra, kuri buvo sudaryta remiantis teorinio aprašymo formulėmis yra pateikiami žemiau esančiame paveiksle. Čia *y* yra atsakas, *x* - kovariančių ir intercepto (laisvojo nario) vektoriaus komponentės vektorius.
+The mathematical response and covariance notation, as well as the structure of the quantile regression model, which was constructed based on the formulas in the theoretical description, are presented in the figure below. Here, *y* is the response, *x* is the vector of covariance and intercept (free member) vector components.
 > [!NOTE]
-> Interceptas užtikrina, kad net jei visi kiti kintamieji būtų lygūs nuliui, modelis vis tiek turi pastovią pradžios reikšmę ir pastovų poslinkį.
+> The intercept ensures that even if all other variables are equal to zero, the model still has a constant initial value and a constant offset.
 
 <img width="614" height="256" alt="Image" src="https://github.com/user-attachments/assets/fa3ddca5-8e2d-4c6d-b67b-31d10dfbc6f1" />
 
-Toliau stebėta kaip modelis tiksliai atlieka prognozes. Modeliui vertinti pasitelkta MSE (angl. mean squared errror) metrika, kuri rodo vidutinį skirtumą tarp tikrųjų ir modelio prognozuotų reikšmių. Remiantis grafiko rezultatais matoma, jog mažiausia paklaida gauta kai τ = 0.6 ir tai rodo, jog prognozuojamas 60‑asis procentilis kvantilis suteikė mažiausią prognozės dispersiją lyginant su faktinėmis kainomis testavimo duomenyse. Šiame kvantilyje prognozės geriausiai minimizuoja kvadratinę paklaidą.
+Next, we observed how accurately the model makes predictions. The model was evaluated using the MSE (mean squared error) metric, which shows the average difference between the actual and predicted values. Based on the results of the graph, it can be seen that the smallest error was obtained when τ = 0.6, which indicates that the predicted 60th percentile quantile provided the smallest forecast dispersion compared to the actual prices in the test data. In this quantile, the forecasts best minimize the square error. 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/4d4d10d2-ec5c-4d07-a1cb-4a1b31966c2b" />
 
-Taip pat svarbu pasižiūrėti ar modelio prognozuoti kvantiliai atitinka tikrąjį duomenų pasiskirstymą. 
-- Juoda linija vaizduoja empirinę tikimybę, kuri yra apskaičiuota naudojantis testiniais duomenimis.
-- Raudona linija rodo tobulą modelio prognozuojamų kvantilių atitikimą teoriniams kvantiliams. T. y. empirinė tikimybė visiškai sutampa su teorine (kiek teoriškai turėtų būti, tiek ir yra praktikoje).
+It is also important to check whether the model's predicted quantiles correspond to the actual data distribution.
+The black line represents the empirical probability, which is calculated using test data.
+- The red line shows the perfect match between the model's predicted quantiles and the theoretical quantiles. In other words, the empirical probability completely matches the theoretical probability (what should be in theory is what is in practice).
 
-Pirmame grafike galima matyti, jog abi linijos yra labai arti viena kitos. Tai geras signalas, rodantis, jog empirinės tikimybės beveik sutampa su teorinėmis ir pasirinkta kvantilių regresija stabiliai atlieka prognozes.
+The first graph shows that both lines are very close to each other. This is a good sign, indicating that the empirical probabilities almost coincide with the theoretical ones and that the selected quantile regression performs stable predictions.
 
-Nagrinėjant empirinių ir teorinių tikimybių skirtumų grafiką taip pat akivaizdu, kad skirtumas tarp tikimybių yra itin mažas, o ties τ = 0.8 reikšme empirinė tikimybė atitinka teorinę.
+When analyzing the graph of the differences between empirical and theoretical probabilities, it is also clear that the difference between the probabilities is extremely small, and at τ = 0.8, the empirical probability matches the theoretical probability.
+
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/ed41c1d0-03bc-4059-bac2-246cb347b591" />
 
-Remiantis teorinėmis matematinėmis formulių išraiškomis buvo apskaičiuota vidutinė kvantilių nuostolių funkcija, kuri iš esmės parodo kiek vidutiniškai neteisingos yra kvantilio 𝜏 prognozės.
+Based on theoretical mathematical expressions, the average quantile loss function was calculated, which essentially shows how inaccurate the quantile 𝜏 forecasts are on average.
 
-- Kuo mažesnė reikšmė – tuo modelis geriau atspindi pasirinktą kvantilį.
+The lower the value, the better the model reflects the selected quantile.
 
 <img width="612" height="667" alt="Image" src="https://github.com/user-attachments/assets/684641ef-32f5-45f0-a536-bd6c345af320" />
 
-Kvantilių nuostolių funkcijos grafike galima matyti, jog mažiausias nuostolis pastebimas kai τ = 0.1, τ = 0.2 ir τ = 0.9. Todėl galima teigti, jog modelis geriausiai geba prognozuoti pigesnius ir brangesnius deimantus, o dažniausiai klysta prognozuodamas vidutinės kainos deimantus ties τ = 0.6 kvantiliu.
+The graph of the quantile loss function shows that the smallest loss is observed when τ = 0.1, τ = 0.2, and τ = 0.9. Therefore, it can be said that the model is best at predicting cheaper and more expensive diamonds, and most often errs in predicting medium-priced diamonds at the τ = 0.6 quantile.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/04f90c1c-405d-48f7-9aa1-855818ae0107" />
 
-Sekančiame grafike nurodomas kvantilių regresijos palyginimas su OLS (tiesine regresija angl. *Ordinary Least Squares*)
-Taškai rodo faktinių duomenų pasiskirstymą, kai *x* ašyje - deimantų karatai, o *y* ašyje - kaina. 
+The following graph shows a comparison of quantile regression with OLS (Ordinary Least Squares).
+The points show the distribution of actual data, with *x* representing diamond carats and *y* representing price.
 
-- $${\color{orange}OLS \space \color{orange}regresija}$$ - prognozuoja vidutinę kainą pagal *carat*.
-- $${\color{red}0.1 \space \color{red}kvantilis}$$ - rodo kainos elgesį pigesnių deimantų grupėje.
-- $${\color{limegreen}0.6 \space \color{limegreen}kvantilis}$$ - rodo kainos elgesį šiek tiek brangesnių nei vidutinių deimantų grupėje.
-- $${\color{darkorchid}0.9 \space \color{darkorchid}kvantilis}$$ - rodo brangiausių deimantų kainą pagal *carat*.
+- $${\color{orange}OLS \space \color{orange}regression}$$ - predicts the average price based on *carat*.
+- $${\color{red}0.1 \space \color{red}quantile}$$ - shows the price behavior in the group of cheaper diamonds.
+- $${\color{limegreen}0.6 \space \color{limegreen}quantile}$$ - shows the price behavior in the group of diamonds that are slightly more expensive than average.
+- $${\color{darkorchid}0.9 \space \color{darkorchid}quantile}$$ - shows the price of the most expensive diamonds per carat.
 
-Kadangi kvantiliai modeliuoja skirtingus kainos pasiskirstymo lygmenius, tai galima teigti, kad $${\color{red}0.1 \space \color{red}kvantilis}$$ atskiria deimantus taip, kad apytiksliai 10 % duomenų taškų (deimantų) yra žemiau šios linijos, o apie 90% – virš jos. Žemiau linijos esantys deimantai, kurių kaina yra tarp 10 % pigiausių (palyginus su kitais turinčiais panašius karatus). Virš linijos yra deimantai, kurių kaina yra didesnė nei ta 10 % pigiausių – t. y. jie patenka į brangesnių 90 % grupę.
+Since quantiles model different levels of price distribution, it can be said that $${\color {red}0.1 \space \color{red}quantile}$$ separates diamonds so that approximately 10% of data points (diamonds) are below this line and about 90% are above it. Diamonds below the line are among the 10% cheapest (compared to others with similar carats). Above the line are diamonds that are more expensive than the 10% cheapest, i.e., they fall into the more expensive 90% group.
 
-$${\color{limegreen}0.6 \space \color{limegreen}kvantilis}$$ atskiria duomenis santykiu 60:40. Po šia linija tikėtina, kad yra 60 % deimantų, kurie yra pigesni ir turintys panašias *carat* savybes. Analizuojant grafiką galima matyti, jog ties 1 karatu, modelis tikisi, kad 60 % deimantų kainavo ne daugiau nei $5000, o 60 % 2-jų karatų deimantų kaina buvo ne didesnė nei $125,000.
+$${\color{limegreen}0.6 \space \color{limegreen}quantile}$$ separates the data at a ratio of 60:40. Below this line, it is likely that 60% of diamonds are cheaper and have similar carat characteristics. Analyzing the graph, we can see that at 1 carat, the model expects that 60% of diamonds cost no more than $5,000, and 60% of 2-carat diamonds cost no more than $125,000.
 
 > [!IMPORTANT]
-> Grafike matomas taškų tankis ***NĖRA*** tiesiogiai proporcingas kvantiliui. Tai yra, nors modelis matematiškai pasako, kad: „60 % stebėjimų tikėtina bus žemiau linijos“, tai dar ne reiškia, kad vizualiai matysime 60 % taškų apačioje.
+> The density of points shown in the graph is NOT directly proportional to the quantile. That is, although the model mathematically states that "60% of observations are likely to be below the line," this does not mean that we will visually see 60% of the points at the bottom.
 
-Akivaizdu, jog pigių, vidutinių ir brangių deimantų kainos priklauso nuo jų svorių, kadangi kvantilių linijos palaipsniui kyla. Galima teigti, jog didėjant deimantų svoriui, didėja ir jų kaina.
+It is clear that the prices of cheap, average, and expensive diamonds depend on their weight, as the quantile lines gradually rise. It can be said that as the weight of diamonds increases, so does their price.
 
-Deimantai, kurių svoris atitinka 1 ir daugiau karatų, pasižymi platesne kainų įvairove. Pastebima, jog duomenys yra labiau išsibarstę ir tai reiškia, kad svoris nebevienareikšmiškai nulemia kainą. Galbūt atsiranda didesnė įtaka kitų kokybės savybių kaip spalva, skaidrumas ar pjūvio kokybė. Taip pat tai gali lemti ir kiti iššoriniai veiksniai (galbūt rinka pasiūlo daug įvairių variantų šiame svorio intervale).
+Diamonds weighing 1 carat or more have a wider range of prices. It can be seen that the data is more scattered, which means that weight no longer unambiguously determines the price. Perhaps other quality characteristics such as color, transparency, or cut quality have a greater influence. This may also be influenced by other external factors (perhaps the market offers many different options in this weight range).
 
-$${\color{orange}OLS \space \color{orange}regresijos}$$ linija taip pat stipriai kylanti į viršų. Galima teigti, jog didėjant *carat*, vidutinė kaina taip pat didėja, o santykis tarp šių kintamųjų yra teigiamas ir stiprus.
+The OLS regression line also rises sharply. It can be said that as the carat increases, the average price also increases, and the relationship between these variables is positive and strong.
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/84bc984b-09ba-41ec-8905-9c289f25e20d" />
 
-Sekantis grafikas vaizduoja deimanto procentinio gylio ir kainos priklausomybę. Pastebimas neigiamas gylio poveikis žemiausiame ($${\color{red}0.1}$$) ir aukščiausiame ($${\color{darkorchid}0.9}$$) kvantiliuose, kas leidžia daryti prielaidą, jog brangiausių ir pigiausių deimantų atveju didesnis gylis gali būti laikomas trūkumu, kuris neigiamai paveikia kainą. Kadangi $${\color{darkorchid}0.9 \space \color{darkorchid}kvantilis}$$ grafike patiria smarkesnį nuolydį, todėl brangiausi deimantai yra labiausiai paveikti kainų pokyčių. Per didelis gylis laikomas neidealiu proporcijų atžvilgiu, pažeidžiama estetika, kas gali būti viena iš priežasčių, kodėl produktai įvertinami pigiau nei įprastai.
+The following graph shows the relationship between the percentage depth of a diamond and its price. There is a noticeable negative effect of depth at the lowest ($${\color{red}0.1}$$) and highest ($${\color {darkorchid}0.9}$$) quantiles, which suggests that in the case of the most expensive and cheapest diamonds, greater depth can be considered a disadvantage that negatively affects the price. Since the $${\color{darkorchid}0.9 \space \color{darkorchid}quantile}$$ experiences a steeper slope in the graph, the most expensive diamonds are the most affected by price changes. Excessive depth is considered undesirable in terms of proportions and compromises aesthetics, which may be one of the reasons why products are valued lower than usual.
 
-Taip pat galima matyti didelį vertikalų duomenų išsibarstymą, kuris yra susitelkęs tarp apytiksliai 58-65 procentinio gylio. Remiantis šia informacija daroma prielaida, jog to pačio gylio deimantų kaina gali būti labai įvairi ir svyruoti nuo kelių šimtų iki keliolikos tūkstančių dolerių. Taigi, procentinis deimanto gylis nėra lemiamas ir vienas pagrindinių veiksnių, kuris smarkiai įtakotų deimantų kainą. 
+There is also a large vertical spread of data, which is concentrated between approximately 58-65 percent depth. Based on this information, it is assumed that the price of diamonds of the same depth can vary greatly, ranging from a few hundred to tens of thousands of dollars. Therefore, the percentage of diamond depth is not a decisive factor and one of the main factors that significantly affect the price of diamonds. 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/aa4438c6-0bb4-413e-86e1-11f686b921f3" />
 
-Dar vienas grafikas, kuriame vaizduojama kintamojo *table* (deimanto viršaus plotis plačiausio taško atžvilgiu) ir kainos analizė. Kaip ir ankstesniame grafike matomas platus vertikalus išsibarstymas, kas leidžia manyti, jog panašaus pločio deimantų kainos gali ženkliai skirtis. Deimantai, kurių pločio vertės buvo žemesnė nei 50, yra ganėtinai reti atvejai ir gali būti laikomi išskirtimis. Kintamasis *table* nėra stipriai susijęs su deimanto kaina ir vienas pats nėra pakankamas požymis kainai paaiškinti. Brangesniems deimantams ($${\color{darkorchid}0.9 \space \color{darkorchid}kvantilio}$$ ir $${\color{limegreen}0.6 \space \color{limegreen}kvantilio}$$ linijos) didesnis deimanto viršaus plotis gali būti susijęs su didesne kaina, bet poveikis vis tiek nėra stiprus. 
+Another graph showing the analysis of the variable *table* (the width of the top of the diamond relative to its widest point) and price. As in the previous graph, there is a wide vertical spread, suggesting that the prices of diamonds of similar width can vary significantly. Diamonds with width values below 50 are quite rare and can be considered exceptions. The variable *table* is not strongly correlated with the price of a diamond and is not sufficient on its own to explain the price. For more expensive diamonds ($${\color{darkorchid}0.9 \space \color{darkorchid}quantile}$$ and $${\color{limegreen}0.6 \space \color{limegreen}quantile}$$ lines), a larger diamond top width may be associated with a higher price, but the effect is still not strong. 
 
-Klasikinės tiesinės regresijos atveju $${\color{orange}OLS \space \color{orange}linija}$$ kyla aukštyn ir tai rodo, jog *table* pokyčiai turi labai silpną teigiamą įtaką vidutinei deimantų kainai. Bet dėl didelio vertikalus išsibarstymo sakoma, kad $${\color{orange}OLS}$$ nėra labai informatyvi šiuo atveju. 
+In the case of classic linear regression, the $${\color{orange}OLS \space \color{orange}line}$$ rises, indicating that changes in *table* have a very weak positive effect on the average price of diamonds. However, due to the large vertical dispersion, it is said that $${\color{orange}OLS}$$ is not very informative in this case. 
 
 <img width="963" height="708" alt="Image" src="https://github.com/user-attachments/assets/d937298e-fcce-4bcc-9d7f-efd011c78eb0" />
 
-## Išvados ##
+## Conclusions ##
 
-- Deimantai, sveriantys 1 ir daugiau karatų, pasižymi gerokai įvairesnėmis kainomis
-- Pastebimas didelis kainų išsibarstymas deimantui pasiekus 1 ir daugiau karatų. Tai rodo, kad pirkėjai vertina ne tik masę, bet ir daugybę kitų savybių, ir tai lemia didelį kainų spektrą.
-- Brangiausiai ir pigiausiai vertinamiems deimantams didesnis gylis sumažina produkto vertę.
-- Deimantų svoris yra pagrindinis veiksnys stipriausiai įtakojantis kainų pokyčius.
-- Platesni deimantai (brangių kategorijų grupėje) yra labiau vertinami nei siauresnės apimties brangakmeniai.
+- Diamonds weighing 1 carat or more have significantly more varied prices
+- There is a noticeable wide range of prices for diamonds weighing 1 carat or more. This shows that buyers value not only weight, but also many other characteristics, which determines the wide range of prices.
+- For the most expensive and cheapest diamonds, greater depth reduces the value of the product.
+- Diamond weight is the main factor influencing price changes.
+- Wider diamonds (in the expensive category) are more highly valued than narrower gemstones.
