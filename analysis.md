@@ -148,4 +148,4 @@ Klasikinės tiesinės regresijos atveju $${\color{orange}OLS \space \color{orang
 - Pastebimas didelis kainų išsibarstymas deimantui pasiekus 1 ir daugiau karatų. Tai rodo, kad pirkėjai vertina ne tik masę, bet ir daugybę kitų savybių, ir tai lemia didelį kainų spektrą.
 - Brangiausiai ir pigiausiai vertinamiems deimantams didesnis gylis sumažina produkto vertę.
 - Deimantų svoris yra pagrindinis veiksnys stipriausiai įtakojantis kainų pokyčius.
-- 
+- Platesni deimantai (brangių kategorijų grupėje) yra labiau vertinami nei siauresnės apimties brangakmeniai.
